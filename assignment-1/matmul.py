@@ -35,10 +35,10 @@ def matrix_multiply(matrix1, matrix2):
         raise ValueError("Incompatible matrix, row lengths are not same")
 
     # Checks if all elements in matrix1 and matrix2 are either integers or floats.
-    if not all(isinstance(item, (int, float)) for row in matrix1 for item in row):
-        raise TypeError("All elements of matrix1 must be integers or floats")
-    if not all(isinstance(item, (int, float)) for row in matrix2 for item in row):
-        raise TypeError("All elements of matrix2 must be integers or floats")
+    if not all(isinstance(item, (int, float, complex)) for row in matrix1 for item in row):
+        raise TypeError("All elements of matrix1 must be integers or floats, or complex")
+    if not all(isinstance(item, (int, float, complex)) for row in matrix2 for item in row):
+        raise TypeError("All elements of matrix2 must be integers or floats, or complex")
 
     # Initializing output matrix with zeros
     out = [[0 for _ in range(len(matrix2[0]))] for _ in range(len(matrix1))]

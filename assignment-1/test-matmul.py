@@ -38,6 +38,11 @@ class TestMatrixMultiplication(unittest.TestCase):
         with self.assertRaises(TypeError):
             matrix_multiply(matrix1, matrix2)
 
+    def test_complex(self):
+        matrix1 = [[1, 1+1j], [0.5, 0.5]]
+        matrix2 = [[0.5, 0], [0, 0.5]]
+        print(matrix_multiply(matrix1, matrix2))
+
 
 if __name__ == "__main__":
     unittest.main()
