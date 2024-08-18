@@ -1,5 +1,5 @@
 import unittest
-from matmul_correct import matrix_multiply
+from matmul import matrix_multiply
 
 class TestMatrixMultiplication(unittest.TestCase):
     def test_valid_multiplication(self):
