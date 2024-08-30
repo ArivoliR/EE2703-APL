@@ -1,7 +1,7 @@
 '''
 Arivoli Ramamoorthy
 EE23B008
-Programming quiz-1
+Programming quiz-2
 '''
 def gausselim(A, B):
     n = len(A)
