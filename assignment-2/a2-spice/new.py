@@ -88,9 +88,6 @@ def evalSpice(filename: str) -> dict[str, list[float]]:
     matrix = np.zeros((N + M, N + M))
     b = np.zeros(N + M)
 
-    # Count of added voltage sources for zero resistances
-    added_voltage_sources = 0
-
     # Fill matrix for resistors
     for comp in components["R"]:
         _, n1, n2, R = comp
@@ -100,10 +97,7 @@ def evalSpice(filename: str) -> dict[str, list[float]]:
                 raise ValueError(f"Negative resistance value: {R}")
             elif R == 0:
                 print(f"Warning: Zero resistance {comp} treated as a wire")
-                # Add a voltage source with 0V
-                new_source_name = f"V_zero_{added_voltage_sources}"
-                components["V"].append([new_source_name, n1, n2, "0"])
-                added_voltage_sources += 1
+                components["V"].append([f"V_{n1}_{n2}", n1, n2, "0"])
             else:
                 for node in [n1, n2]:
                     if node != "GND":
@@ -116,17 +110,7 @@ def evalSpice(filename: str) -> dict[str, list[float]]:
         except ValueError:
             raise ValueError(f"Invalid resistance specification: {comp}")
 
-    # Update M to include the new voltage sources
-    M += added_voltage_sources
-
-    # Resize the matrix and b vector to account for new voltage sources
-    new_size = N + M
-    new_matrix = np.zeros((new_size, new_size))
-    new_matrix[:matrix.shape[0], :matrix.shape[1]] = matrix
-    matrix = new_matrix
-    b = np.zeros(new_size)
-
-    # Process voltage sources (including those added for zero resistances)
+    # Fill matrix for voltage sources
     for i, comp in enumerate(components["V"]):
         _, n1, n2, V = comp
         try:
@@ -140,7 +124,6 @@ def evalSpice(filename: str) -> dict[str, list[float]]:
             b[N + i] = V
         except ValueError:
             raise ValueError(f"Invalid voltage source specification: {comp}")
-
 
     # Handle current sources
     for comp in components["I"]:

@@ -1,0 +1,6 @@
+# Test circuit for invalid component specification
+.circuit
+V1 1 GND dc 5
+R1 1 2 1k    # Invalid resistance specification (not a float)
+R2 2 GND 1000
+.end

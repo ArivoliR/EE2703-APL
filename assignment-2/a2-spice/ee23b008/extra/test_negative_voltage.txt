@@ -1,5 +1,0 @@
-.circuit
-V1 1 GND dc -5
-R1 1 2 1000
-R2 2 GND 2000
-.end

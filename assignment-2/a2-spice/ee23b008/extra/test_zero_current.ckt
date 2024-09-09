@@ -1,0 +1,6 @@
+#Test circuit for zero current source
+.circuit
+V1 1 GND dc 5
+R1 1 2 1000
+I1 2 GND dc 0  #Zero current source, should be ignored
+.end

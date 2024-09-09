@@ -1,5 +1,0 @@
-.circuit
-V1 1 GND dc 5
-R1 1 2 0     # Zero resistance
-R2 2 GND 1000
-.end

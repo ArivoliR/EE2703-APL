@@ -1,5 +1,16 @@
+"""
+Arivoli Ramamoorthy
+EE23B008
+
+Assignment-2 
+SPICE simulation in python using numpy to solve DC circuits
+Input: File with circuit definition
+Output: Voltages at every node and  branch current through each source
+"""
+
+
+
 import numpy as np
-import sys
 
 def evalSpice(filename: str) -> dict[str, list[float]]:
     """
@@ -184,9 +195,3 @@ def evalSpice(filename: str) -> dict[str, list[float]]:
     return sorted_voltages, currents
 
 
-if __name__ == "__main__":
-    try:
-        voltages, currents = evalSpice(sys.argv[1])
-        print(f"({voltages}, {currents})")
-    except Exception as e:
-        print(f"{type(e).__name__}: {str(e)}")
