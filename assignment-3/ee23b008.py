@@ -1,3 +1,12 @@
+"""
+Arivoli Ramamoorthy
+EE23B008
+
+Assignment-3 Data Estimation
+This assignment is based on trying to estimate various physical parameters using raw data (from the datasets) and Planck's formula
+Input: Datasets (Spectral radiance vs Wavelength)
+Output: Fitted values of h c k T.
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
@@ -87,7 +96,7 @@ def main():
 
     # Fit h, c, k
     params, cov = fit_constants(x, y, T)
-    print("\nFitted parameters (T fixed, scaling factors for h, c, k):")
+    print("\nFitted parameters (T fixed, h, c, k fitted):")
     print(f"T = {T:.2f} K")
     print(f"h = {params[0]*PLANCK_CONSTANT:.2e} J⋅s")
     print(f"c = {params[1]*SPEED_OF_LIGHT:.2e} m/s")
