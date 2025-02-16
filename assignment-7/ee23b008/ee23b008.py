@@ -133,12 +133,12 @@ def image_reconstruction(t_data, pitch, dist_per_sam, num_samples):
 
 if __name__ == "__main__":
 
-    Nmics = 64  # Number of microphones
-    Nsamp = 200  # Number of samples
+    Nmics = 8  # Number of microphones
+    Nsamp = 50  # Number of samples
     obstacle = (3, -1)  # Position of the obstacle
     pitch = 0.1  # Distance between microphones
     dist_per_sam = 0.1  # Distance covered per sample
-    C = 2.0  # Speed of sound in the medium
+    C = 0.5 # Speed of sound in the medium
     SincP = 5  # Sinc function parameter for source waveform
 
     mics = generate_microphone_positions(Nmics, pitch)
